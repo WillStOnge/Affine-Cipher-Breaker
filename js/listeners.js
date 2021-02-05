@@ -5,8 +5,7 @@ $("#plaintext-attack").click(function() {
 
     if (matches == null)
         console.log("Error");
-
-    if (matches.length == 0)
+    else if (matches.length == 0)
         $("#keyword-table").html("<p class=\"text-center\">No matches found</p>");
     else
         buildTable(matches);
