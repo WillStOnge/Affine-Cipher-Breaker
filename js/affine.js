@@ -2,9 +2,9 @@ function encipher(multiplicativeKey, additiveKey, plainText)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
-    if (multiplicativeKey % 2 == 0 || multiplicativeKey == 13) {
+
+    if (multiplicativeKey % 2 == 0 || multiplicativeKey == 13)
         return null;
-    }
        
     var stringInput = plainText.toString();
     stringInput = stringInput.replace(/\W/ig, "").toUpperCase();
@@ -14,7 +14,10 @@ function encipher(multiplicativeKey, additiveKey, plainText)
     {
         var temp = chars[i].charCodeAt(0) - 64;
         var multiplicativeValue = math.mod((temp * multiplicativeKey), 26);
-        if (multiplicativeKey == 0) multiplicativeKey = 26;
+
+        if (multiplicativeValue == 0) 
+            multiplicativeValue = 26;
+
         var finalValue = math.mod((multiplicativeValue + additiveKey), 26);
 
         if (finalValue == 0)
@@ -22,5 +25,6 @@ function encipher(multiplicativeKey, additiveKey, plainText)
 
         chars[i] = String.fromCharCode(finalValue + 64);
     }
-    return chars.join("")   //.replace(/(.{5})/g, '$1 ') -> add whitespace after each 5th element
+
+    return chars.join("");
 }
