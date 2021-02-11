@@ -35,25 +35,41 @@
       <!-- Content wrapper start -->
       <div class="content-wrapper">
 
+        <!-- Navbar start -->
+        <nav class="navbar">
+          <div class="navbar-content">
+            <h3>Affine Cipher Breaker</h3>
+          </div>
+        </nav>
+        <!-- Navbar end -->
+
         <!-- Cipher component start -->
         <div class="card w-full ml-0">
           <div class="row">
             
+            <!-- Input and output textareas -->
             <div class="col-8">
-              <textarea class="form-control" id="input"></textarea>
+              <textarea placeholder="Input" class="form-control" id="input"></textarea>
+              <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
             </div>
 
-            <div class="col-2">
-              <div class="text-left">
-                <!-- Multiplicative and additive keys go here -->
-              </div>
-            </div>
+            <!-- Blank region -->
+            <div class="col-2"></div>
 
+            <!-- Keys and buttons -->
             <div class="col-2">
               <div class="text-right">
-                <button class="btn">Encipher</button>
+                <input type="number" placeholder="Multiplicative Key" class="form-control" id="mKey">
                 <p></p>
-                <button class="btn">Decipher</button>
+                <input type="number" placeholder="Additive Key" class="form-control" id="bKey">
+
+                <p></p>
+
+                <div class="text-center">
+                  <button class="btn">Encipher</button>
+                  <button class="btn">Decipher</button>
+                </div>
+
               </div>
             </div>
 
