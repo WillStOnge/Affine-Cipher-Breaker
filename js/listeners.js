@@ -21,4 +21,11 @@ $('#input').keyup(function() {
     $('#input_count').text("Word Count: " + $('#input').val().length);
 });
 
+// Open the modal and generate the frequency analysis chart.
+$('#freq_button').click(function() {
+    createChart($('#freq_chart'), $('#input').val());
+    
+    halfmoon.toggleModal('modal-freq');
+});
+
 //.replace(/(.{5})/g, '$1 ') -> add whitespace after each 5th element

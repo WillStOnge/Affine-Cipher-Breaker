@@ -5,6 +5,8 @@
     <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjs@9.2.0/lib/browser/math.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <script src="js/frequency.js"></script>
     <script src="js/affine.js"></script>
     <script src="js/attack.js"></script>
 
@@ -22,8 +24,20 @@
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
   </head>
   <body class="container-fluid with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-    <!-- Modals -->
-    <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
+    <!-- Frequency Analysis Modal -->
+    <div class="modal modal-full ie-scroll-fix" id="modal-freq" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="row">
+            <h5 class="modal-title col-11">Frequency Analysis</h5>
+            <button type="button" class="btn btn-primary col-1" data-dismiss="modal">Close</button>
+          </div>
+          <canvas id="freq_chart" class="h-three-quarter"></canvas>
+          <div class="text-right mt-20">
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Page wrapper start -->
     <div class="page-wrapper">
@@ -78,6 +92,10 @@
                 <div class="text-center">
                   <button class="btn">Encipher</button>
                   <button class="btn">Decipher</button>
+
+                  <p></p>
+
+                  <button class="btn" id="freq_button">Frequency Analysis</button>
                 </div>
 
               </div>
