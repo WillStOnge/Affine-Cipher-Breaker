@@ -1,5 +1,5 @@
 // Performs a known plaintext attack on a given cipher text.
-function knownPlaintext(ciphertext, keyword="THE")
+function affineKnownPlaintext(ciphertext, keyword="THE")
 {
   if (ciphertext == "" || keyword == "")
     return null;
@@ -7,12 +7,12 @@ function knownPlaintext(ciphertext, keyword="THE")
   const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
   const bValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
 
-  var results = []
+  var results = [];
 
   // Iterate through the allowed m and b values and find any matches.
   mValues.forEach(m => {
     bValues.forEach(b => {
-      var enciphered = encipher(m, b, keyword);
+      var enciphered = affineEncipher(m, b, keyword);
 
       if (ciphertext.includes(enciphered))
         results.push([enciphered, m, b]);

@@ -22,14 +22,13 @@
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
   </head>
   <body class="container-fluid with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-    <!-- Modals go here -->
+    <!-- Modals -->
     <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
 
     <!-- Page wrapper start -->
     <div class="page-wrapper">
 
-      <!-- Sticky alerts (toasts), empty container -->
-      <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
+      <!-- Sticky alerts (toasts) -->
       <div class="sticky-alerts"></div>
 
       <!-- Content wrapper start -->
@@ -50,19 +49,30 @@
             <!-- Input and output textareas -->
             <div class="col-8">
               <textarea placeholder="Input" class="form-control" id="input"></textarea>
+              <p id="input_count" class="mt-0">Word Count: 0</p>
               <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
+              <p id="output_count" class="mt-0">Word Count: 0</p>
             </div>
 
             <!-- Blank region -->
             <div class="col-2"></div>
 
             <!-- Keys and buttons -->
-            <div class="col-2">
+            <div class="col-2" height="100%">
               <div class="text-right">
+                <select class="form-control" id="cipher">
+                  <option value="affine" selected="selected">Affine</option>
+                </select>
+                
+                <hr>
+                <p></p>
+
                 <input type="number" placeholder="Multiplicative Key" class="form-control" id="mKey">
                 <p></p>
                 <input type="number" placeholder="Additive Key" class="form-control" id="bKey">
 
+                <p></p>
+                <hr>
                 <p></p>
 
                 <div class="text-center">

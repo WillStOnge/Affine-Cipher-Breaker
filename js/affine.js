@@ -1,9 +1,9 @@
-function encipher(multiplicativeKey, additiveKey, plainText)
+function affineEncipher(multiplicativeKey, additiveKey, plainText)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
 
-    if (multiplicativeKey % 2 == 0 || multiplicativeKey == 13)
+    if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
         return null;
        
     var stringInput = plainText.toString();
@@ -21,7 +21,7 @@ function encipher(multiplicativeKey, additiveKey, plainText)
         char = math.mod(multiplicativeValue + additiveKey, 26);
 
         if (char == 0)
-        char = 26;
+            char = 26;
 
         chars[i] = String.fromCharCode(char + 64);
     }
@@ -29,7 +29,7 @@ function encipher(multiplicativeKey, additiveKey, plainText)
     return chars.join("");
 }
 
-function decipher(multiplicativeKey, additiveKey, plainText)
+function affineDecipher(multiplicativeKey, additiveKey, plainText)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
@@ -37,7 +37,7 @@ function decipher(multiplicativeKey, additiveKey, plainText)
     const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
     const inverseValues = [1, 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25];
     
-    if (multiplicativeKey % 2 == 0 || multiplicativeKey == 13)
+    if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
         return null;
     
     var multiplicitiveInverse = inverseValues[mValues.indexOf(multiplicativeKey)];
