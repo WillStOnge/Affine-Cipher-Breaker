@@ -1,3 +1,5 @@
+//Encipher plaintext using affine cipher method using the formula C = mP + b mod 26
+//C is ciphertext letter, P is plaintext letter, m is multiplicative key and b is additive key
 function affineEncipher(multiplicativeKey, additiveKey, plainText)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
@@ -29,6 +31,39 @@ function affineEncipher(multiplicativeKey, additiveKey, plainText)
     return chars.join("");
 }
 
+//Encipher plaintext using affine cipher method using the formula C = (b + P) * m mod 26
+//C is ciphertext letter, P is plaintext letter, m is multiplicative key and b is additive key
+function affineEncipherAdditiveKeyFirst(additiveKey, multiplicativeKey, plainText)
+{
+    multiplicativeKey = math.mod(multiplicativeKey, 26);
+    additiveKey = math.mod(additiveKey, 26);
+
+    if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
+        return null;
+
+    var stringInput = plainText.toString();
+    stringInput = stringInput.replace(/\W/ig, "").toUpperCase();
+    var chars = stringInput.split("");
+
+    for (i = 0; i < chars.length; i++)
+    {
+        var char = chars[i].charCodeAt(0) - 64;
+        var additiveValue = math.mod(char + additiveKey, 26);
+
+        if (additiveValue == 0)
+            additiveValue = 26;
+
+        char = math.mod(additiveValue * multiplicativeKey, 26);
+
+        if (char == 0)
+            char = 26;
+
+        chars[i] = String.fromCharCode(char + 64);
+    }
+
+    return chars.join("");
+}
+
 function affineDecipher(multiplicativeKey, additiveKey, plainText)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
@@ -40,7 +75,7 @@ function affineDecipher(multiplicativeKey, additiveKey, plainText)
     if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
         return null;
     
-    var multiplicitiveInverse = inverseValues[mValues.indexOf(multiplicativeKey)];
+    var multiplicativeInverse = inverseValues[mValues.indexOf(multiplicativeKey)];
     
     var stringInput = plainText.toString();
     stringInput = stringInput.replace(/\W/ig, "").toUpperCase();
@@ -54,7 +89,7 @@ function affineDecipher(multiplicativeKey, additiveKey, plainText)
         if (undoAddition == 0) 
             undoAddition = 26;
             
-        char = math.mod(undoAddition * multiplicitiveInverse, 26);
+        char = math.mod(undoAddition * multiplicativeInverse, 26);
          
         if (char == 0)
         char = 26;
