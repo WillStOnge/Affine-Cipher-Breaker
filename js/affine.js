@@ -1,9 +1,9 @@
-//Encipher plaintext using affine cipher method using the formula C = mP + b mod 26
-//C is ciphertext letter, P is plaintext letter, m is multiplicative key and b is additive key
-function affineEncipher(multiplicativeKey, additiveKey, plainText)
+//Encipher plaintext using affine cipher method
+function affineEncipher(multiplicativeKey, additiveKey, plainText, rev)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
+    rev = false;
 
     if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
         return null;
@@ -15,45 +15,18 @@ function affineEncipher(multiplicativeKey, additiveKey, plainText)
     for (i = 0; i < chars.length; i++)
     {
         var char = chars[i].charCodeAt(0) - 64;
-        var multiplicativeValue = math.mod(char * multiplicativeKey, 26);
 
-        if (multiplicativeValue == 0) 
-            multiplicativeValue = 26;
-
-        char = math.mod(multiplicativeValue + additiveKey, 26);
-
-        if (char == 0)
-            char = 26;
-
-        chars[i] = String.fromCharCode(char + 64);
-    }
-
-    return chars.join("");
-}
-
-//Encipher plaintext using affine cipher method using the formula C = (b + P) * m mod 26
-//C is ciphertext letter, P is plaintext letter, m is multiplicative key and b is additive key
-function affineEncipherAdditiveKeyFirst(additiveKey, multiplicativeKey, plainText)
-{
-    multiplicativeKey = math.mod(multiplicativeKey, 26);
-    additiveKey = math.mod(additiveKey, 26);
-
-    if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
-        return null;
-
-    var stringInput = plainText.toString();
-    stringInput = stringInput.replace(/\W/ig, "").toUpperCase();
-    var chars = stringInput.split("");
-
-    for (i = 0; i < chars.length; i++)
-    {
-        var char = chars[i].charCodeAt(0) - 64;
-        var additiveValue = math.mod(char + additiveKey, 26);
-
-        if (additiveValue == 0)
-            additiveValue = 26;
-
-        char = math.mod(additiveValue * multiplicativeKey, 26);
+        if (rev){
+             var multiplicativeValue = math.mod(char * multiplicativeKey, 26);
+                if (multiplicativeValue == 0)
+                    multiplicativeValue = 26;
+                char = math.mod(multiplicativeValue + additiveKey, 26);
+        }else{
+            var additiveValue = math.mod(char + additiveKey, 26);
+                    if (additiveValue == 0)
+                        additiveValue = 26;
+                    char = math.mod(additiveValue * multiplicativeKey, 26);
+        }
 
         if (char == 0)
             char = 26;
