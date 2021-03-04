@@ -68,9 +68,9 @@
             <!-- Input and output textareas -->
             <div class="col-8">
               <textarea placeholder="Input" class="form-control" id="input"></textarea>
-              <p id="input_count" class="mt-0">Word Count: 0</p>
+              <p id="input_count" class="mt-0">Letter Count: 0</p>
               <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
-              <p id="output_count" class="mt-0">Word Count: 0</p>
+              <p id="output_count" class="mt-0">Letter Count: 0</p>
             </div>
 
             <!-- Blank region -->
@@ -86,9 +86,9 @@
                 <hr>
                 <p></p>
 
-                <input type="number" placeholder="Multiplicative Key" class="form-control" id="mKey">
+                <input type="number" min="1" max="26" step="2" placeholder="Multiplicative Key" class="form-control" id="mKey">
                 <p></p>
-                <input type="number" placeholder="Additive Key" class="form-control" id="bKey">
+                <input type="number" min="1" max="26" placeholder="Additive Key" class="form-control" id="bKey">
 
                 <p></p>
                 <hr>
@@ -120,11 +120,11 @@
 
             <div class="collapse-content">
               <!-- Plaintext attack input and button -->
-              <label for="keyword">Keyword:</label>
+              <label for="keyword">Known Plaintext:</label>
               <div class="input-group">
                 <input class="form-control border" type="text" id="keyword" value="THE">
                 <div class="input-group-append">
-                  <button class="btn btn-primary" id="plaintext-attack">Perform Attack</button>
+                  <button class="btn btn-primary" id="plaintext-attack">Search</button>
                 </div>
               </div>
 
@@ -142,7 +142,7 @@
 
             <div class="collapse-content">
               <!-- Brute force attack input and button -->
-              <button class="btn btn-primary" id="plaintext-attack">Perform Attack</button>
+              <button class="btn btn-primary" id="plaintext-attack">Search</button>
 
               <!-- Brute force table -->
               <div class="table-responsive" id="keyword-table"></div>
