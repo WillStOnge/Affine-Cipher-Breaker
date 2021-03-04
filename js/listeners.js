@@ -28,4 +28,8 @@ $('#freq_button').click(function() {
     halfmoon.toggleModal('modal-freq');
 });
 
+$('document').ready(function() {
+    $('#year').text(new Date().getFullYear());
+})
+
 //.replace(/(.{5})/g, '$1 ') -> add whitespace after each 5th element

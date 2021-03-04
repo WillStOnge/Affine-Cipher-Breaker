@@ -20,10 +20,12 @@
     <link rel="icon" href="img/favicon.png">
     <title>Affine Cipher Breaker</title>
 
-    <!-- Halfmoon CSS -->
+    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet"/>
   </head>
-  <body class="container-fluid with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+  <body class="container-fluid with-custom-webkit-scrollbars with-custom-css-scrollbars" style="min-height:100vh" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+
     <!-- Frequency Analysis Modal -->
     <div class="modal modal-full ie-scroll-fix" id="modal-freq" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -49,9 +51,12 @@
       <div class="content-wrapper">
 
         <!-- Navbar start -->
-        <nav class="navbar">
+        <nav class="navbar justify-content-between align-middle">
           <div class="navbar-content">
-            <h3>Affine Cipher Breaker</h3>
+            <h4 class="pl-5">Affine Cipher Breaker</h4>
+          </div>
+          <div class="navbar-content">
+            <a href="https://github.com/WillStOnge/Affine-Cipher-Breaker/"><img class="text-decoration-none" src="img/github.png" alt="GitHub Repo"></a>
           </div>
         </nav>
         <!-- Navbar end -->
@@ -63,9 +68,9 @@
             <!-- Input and output textareas -->
             <div class="col-8">
               <textarea placeholder="Input" class="form-control" id="input"></textarea>
-              <p id="input_count" class="mt-0">Word Count: 0</p>
+              <p id="input_count" class="mt-0">Letter Count: 0</p>
               <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
-              <p id="output_count" class="mt-0">Word Count: 0</p>
+              <p id="output_count" class="mt-0">Letter Count: 0</p>
             </div>
 
             <!-- Blank region -->
@@ -81,9 +86,9 @@
                 <hr>
                 <p></p>
 
-                <input type="number" placeholder="Multiplicative Key" class="form-control" id="mKey">
+                <input type="number" min="1" max="26" step="2" placeholder="Multiplicative Key" class="form-control" id="mKey">
                 <p></p>
-                <input type="number" placeholder="Additive Key" class="form-control" id="bKey">
+                <input type="number" min="1" max="26" placeholder="Additive Key" class="form-control" id="bKey">
 
                 <p></p>
                 <hr>
@@ -105,34 +110,60 @@
         </div>
         <!-- Cipher component end -->
 
-        <!-- Known plaintext attack start -->
-        <details class="collapse-panel p-10 w-half">
-          <summary class="collapse-header">
-            <strong>Known Plaintext Attack</strong>
-          </summary>
+        <!-- Attack component start -->
+        <div class="row">
+          <!-- Known plaintext attack start -->
+          <details class="collapse-panel p-10 col-6">
+            <summary class="collapse-header">
+              <strong>Known Plaintext Attack</strong>
+            </summary>
 
-          <div class="collapse-content">
-            <!-- Plaintext attack input and button -->
-            <label for="keyword">Keyword:</label>
-            <div class="input-group">
-              <input class="form-control border" type="text" id="keyword" value="THE">
-              <div class="input-group-append">
-                <button class="btn btn-primary" id="plaintext-attack">Perform Attack</button>
+            <div class="collapse-content">
+              <!-- Plaintext attack input and button -->
+              <label for="keyword">Known Plaintext:</label>
+              <div class="input-group">
+                <input class="form-control border" type="text" id="keyword" value="THE">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" id="plaintext-attack">Search</button>
+                </div>
               </div>
+
+              <!-- Plaintext attack table -->
+              <div class="table-responsive" id="keyword-table"></div>
             </div>
+          </details>
+          <!-- Known plaintext attack end -->
 
-            <!-- Plaintext attack table -->
-            <div class="table-responsive" id="keyword-table"></div>
-          </div>
-        </details>
-        <!-- Known plaintext attack end -->
+          <!-- Brute force attack start -->
+          <details class="collapse-panel p-10 col-6">
+            <summary class="collapse-header">
+              <strong>Brute Force Attack</strong>
+            </summary>
 
+            <div class="collapse-content">
+              <!-- Brute force attack input and button -->
+              <button class="btn btn-primary" id="plaintext-attack">Search</button>
+
+              <!-- Brute force table -->
+              <div class="table-responsive" id="keyword-table"></div>
+            </div>
+          </details>
+          <!-- Brute force attack end -->
+        </div>
+        <!-- Attack component end -->
+
+        <!-- Footer start -->
+        <footer class="text-center">
+          <p class="font-size-12 m-0">This site was designed for CSC 483 (Cryptology) at Northern Kentucky University.<br>&copy;<span id="year"></span> Will St. Onge, Will Sie, and Hannah Creech</p>
+        </footer>
+        <!-- Footer end -->
+      
       </div>
       <!-- Content wrapper end -->
 
     </div>
     <!-- Page wrapper end -->
-            
+    
   </body>
   <script src="js/listeners.js"></script>
 </html>
