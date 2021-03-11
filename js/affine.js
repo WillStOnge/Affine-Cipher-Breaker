@@ -126,38 +126,19 @@ function affineCongruencySystems(c1, p1, c2, p2){
     
     var m, b, ctemp, ptemp;
     
-    /*Solve for m*/
-    
-    //need different mod equation if a negative number
-  /*  if((p1-p2)<0)
-        ptemp = 26 - ((p2-p1)%26);
-    else
-        ptemp = (p1-p2)%26
-        */
-    ptemp = p1-p2;
-    ptemp = math.mod(ptemp, 26);
+    /*Solve for m*/    
+    ptemp = math.mod((p1-p2), 26);
     
     //find p(diff)^-1
     if(mValues.indexOf(ptemp) >= 0)
         ptemp = inverseValues[mValues.indexOf(ptemp)];
-    
-  /*  if((c1 - c2) < 0)
-            ctemp = 26 - ((c2-c1)%26);
-    else 
-        ctemp = (c1-c2)%26;
-    */
-    ctemp = c1 - c2;
-    ctemp = math.mod(ctemp, 26);
+  
+    ctemp = math.mod((c1-c2), 26);
     
     m = ctemp*ptemp;
     m = math.mod(m, 26);
     
-    /* Solve for b */
-  /*  if((c1 - p1*m) < 0)
-        b = 26 - ((p1*m - c1)%26);
-    else
-        b = (c1 - p1*m)%26;
-   */
+    /* Solve for b*/
     b = math.mod((c1 - p1*m), 26);
     var values = [m, b];
     return values;   
