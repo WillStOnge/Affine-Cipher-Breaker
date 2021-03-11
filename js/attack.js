@@ -1,6 +1,12 @@
 // Builds the table for the results of the known plaintext attack.
 function buildTable(matches)
 {
+  if (matches.length == 1)
+  {
+    $("#keyword-table").html("<p class=\"text-center\">No matches found</p>");
+    return;
+  }
+
   var matchesHtml = "";
 
   matches.forEach(match => {
