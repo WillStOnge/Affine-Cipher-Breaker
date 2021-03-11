@@ -56,7 +56,7 @@ $('#encipher_button').click(function() {
 
     if (output !== null)
     {
-        $("#output").text(output);
+        $("#output").text(output.replace(/(.{5})/g, '$1 '));
         $('#output_count').text("Letter Count: " + output.length);
     }
 });
@@ -86,7 +86,7 @@ $('#decipher_button').click(function() {
 
     if (output !== null)
     {
-        $("#output").text(output);
+        $("#output").text(output.replace(/(.{5})/g, '$1 '));
         $('#output_count').text("Letter Count: " + output.length);
     }
 });
@@ -101,7 +101,6 @@ $('#freq_button').click(function() {
     // Clear the canvas
     var canvas = $('#freq_chart')[0];
     canvas.width = canvas.width;
-
 
     createChart($('#freq_chart'), $('#input').val());
     
@@ -130,7 +129,7 @@ $('#solve').click(function() {
         return;
     }
 
-    var res = affineCongruencySystems(c1, p1, c2, p2)
+    var res = affineCongruencySystems(c1, p1, c2, p2);
 
     $('#congruency').text("The multiplicative key is " + res[0] + " and the additive key is " + res[1]);
 });
@@ -138,6 +137,4 @@ $('#solve').click(function() {
 $('document').ready(function() {
     $('#year').text(new Date().getFullYear());
     $('#input_count').text("Letter Count: " + $('#input').val().length);
-})
-
-//.replace(/(.{5})/g, '$1 ') -> add whitespace after each 5th element
+});
