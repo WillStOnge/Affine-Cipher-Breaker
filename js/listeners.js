@@ -98,9 +98,41 @@ $('#input').keyup(function() {
 
 // Open the modal and generate the frequency analysis chart.
 $('#freq_button').click(function() {
+    // Clear the canvas
+    var canvas = $('#freq_chart')[0];
+    canvas.width = canvas.width;
+
+
     createChart($('#freq_chart'), $('#input').val());
     
     halfmoon.toggleModal('modal-freq');
+});
+
+// Solves the system of congruences in the frequency analysis modal.
+$('#solve').click(function() {
+    var p1, p2, c1, c2;
+
+    try
+    {
+        p1 = Number($('#p1').val().charCodeAt(0)) - 64;
+        p2 = Number($('#p2').val().charCodeAt(0)) - 64;
+        c1 = Number($('#c1').val().charCodeAt(0)) - 64;
+        c2 = Number($('#c2').val().charCodeAt(0)) - 64;
+    }
+    catch (e)
+    {
+        halfmoon.initStickyAlert({
+            content: "Invalid input",
+            title: "Error",
+            alertType: "alert-danger",
+            timeShown: 3000
+        });
+        return;
+    }
+
+    var res = affineCongruencySystems(c1, p1, c2, p2)
+
+    $('#congruency').text("The multiplicative key is " + res[0] + " and the additive key is " + res[1]);
 });
 
 $('document').ready(function() {

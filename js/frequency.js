@@ -23,9 +23,6 @@ function createChart(context, input)
 {
     freqs = getLetterCounts(input);
 
-    console.log(Array.from(freqs.keys()));
-    console.log(Array.from(freqs.values()));
-
     new Chart(context, {
         type: "bar",
         data:

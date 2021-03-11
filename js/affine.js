@@ -120,26 +120,27 @@ function affineKnownPlaintext(ciphertext, keyword="THE")
   return results;
 }
 
-function affineCongruencySystems(c1, p1, c2, p2){
+function affineCongruencySystems(c1, p1, c2, p2)
+{
     const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
     const inverseValues = [1, 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25];
     
     var m, b, ctemp, ptemp;
     
-    /*Solve for m*/    
-    ptemp = math.mod((p1-p2), 26);
+    // Solve for m
+    ptemp = math.mod(p1 - p2, 26);
     
-    //find p(diff)^-1
+    // Find p(diff)^-1
     if(mValues.indexOf(ptemp) >= 0)
         ptemp = inverseValues[mValues.indexOf(ptemp)];
   
-    ctemp = math.mod((c1-c2), 26);
+    ctemp = math.mod(c1 - c2, 26);
     
-    m = ctemp*ptemp;
+    m = ctemp * ptemp;
     m = math.mod(m, 26);
     
-    /* Solve for b*/
-    b = math.mod((c1 - p1*m), 26);
-    var values = [m, b];
-    return values;   
+    // Solve for b
+    b = math.mod((c1 - p1 * m), 26);
+    
+    return [m, b];
 }
