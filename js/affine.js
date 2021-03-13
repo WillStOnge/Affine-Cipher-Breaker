@@ -3,7 +3,6 @@ function affineEncipher(multiplicativeKey, additiveKey, plainText, rev)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
-    rev = false;
 
     if (math.mod(multiplicativeKey, 2) == 0 || multiplicativeKey == 13)
         return null;
@@ -16,7 +15,7 @@ function affineEncipher(multiplicativeKey, additiveKey, plainText, rev)
     {
         var char = chars[i].charCodeAt(0) - 64;
 
-        if (rev)
+        if (rev === true)
         {
             var additiveValue = math.mod(char + additiveKey, 26);
 
@@ -50,7 +49,6 @@ function affineDecipher(multiplicativeKey, additiveKey, plainText, rev)
 {
     multiplicativeKey = math.mod(multiplicativeKey, 26);
     additiveKey = math.mod(additiveKey, 26);
-    rev = false
 
     const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
     const inverseValues = [1, 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25];

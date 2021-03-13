@@ -39,10 +39,13 @@ $('#encipher_button').click(function() {
 
     if (cipherType === "affine")
     {
+        var rev = $("#switchOrder").prop("checked");
         var m = $("#mKey").val();
         var b = $("#bKey").val();
 
-        output = affineEncipher(m, b, input);
+        console.log(rev);
+
+        output = affineEncipher(m, b, input, rev);
     }
     else
     {
@@ -69,10 +72,11 @@ $('#decipher_button').click(function() {
 
     if (cipherType === "affine")
     {
+        var rev = $("#switchOrder").prop("checked");
         var m = $("#mKey").val();
         var b = $("#bKey").val();
         
-        output = affineDecipher(m, b, input);
+        output = affineDecipher(m, b, input, rev);
     }
     else
     {
