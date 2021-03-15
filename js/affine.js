@@ -66,7 +66,7 @@ function affineDecipher(multiplicativeKey, additiveKey, plainText, rev)
     {
         var char = chars[i].charCodeAt(0) - 64;
 
-        if (!rev)
+        if (rev === true)
         {
             var undoMultiplication = math.mod(char * multiplicativeInverse, 26);
 

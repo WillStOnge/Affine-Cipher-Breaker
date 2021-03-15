@@ -43,8 +43,6 @@ $('#encipher_button').click(function() {
         var m = $("#mKey").val();
         var b = $("#bKey").val();
 
-        console.log(rev);
-
         output = affineEncipher(m, b, input, rev);
     }
     else
@@ -60,7 +58,7 @@ $('#encipher_button').click(function() {
     if (output !== null)
     {
         $("#output").text(output.replace(/(.{5})/g, '$1 '));
-        $('#output_count').text("Letter Count: " + output.length);
+        $('#output_count').text("Letter Count: " + output.replace(/(.{5})/g, '$1 ').length);
     }
 });
 
