@@ -56,7 +56,7 @@ $('#encipher_button').click(function() {
     }
 
     if (output !== null)
-        $("#output").text(output.replace(/(.{5})/g, '$1 '));
+        $("#output").val(output.replace(/(.{5})/g, '$1 '));
 });
 
 // When the decipher button is clicked.
@@ -84,7 +84,7 @@ $('#decipher_button').click(function() {
     }
 
     if (output !== null)
-        $("#output").text(output.replace(/(.{5})/g, '$1 '));
+        $("#output").val(output.replace(/(.{5})/g, '$1 '));
 });
 
 // Clears the input and output fields.
@@ -128,7 +128,10 @@ $('#solve').click(function() {
 
     var res = affineCongruencySystems(c1, p1, c2, p2);
 
-    $('#congruency').text("The multiplicative key is " + res[0] + " and the additive key is " + res[1]);
+    if (res === null)
+        $('#congruency').text("No possible key exists for these inputs");
+    else
+        $('#congruency').text("The multiplicative key is " + res[0] + " and the additive key is " + res[1]);
 });
 
 $('document').ready(function() {

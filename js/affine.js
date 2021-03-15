@@ -43,7 +43,6 @@ function affineEncipher(multiplicativeKey, additiveKey, plainText, rev)
     return chars.join("");
 }
 
-
 //Decipher ciphertext to plaintext
 function affineDecipher(multiplicativeKey, additiveKey, plainText, rev)
 {
@@ -140,5 +139,9 @@ function affineCongruencySystems(c1, p1, c2, p2)
     // Solve for b
     b = math.mod((c1 - p1 * m), 26);
     
+    // Invalid key.
+    if (math.mod(m, 26) === 0)
+        return null;
+        
     return [m, b];
 }
