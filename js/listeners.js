@@ -56,10 +56,7 @@ $('#encipher_button').click(function() {
     }
 
     if (output !== null)
-    {
         $("#output").text(output.replace(/(.{5})/g, '$1 '));
-        $('#output_count').text("Letter Count: " + output.replace(/(.{5})/g, '$1 ').length);
-    }
 });
 
 // When the decipher button is clicked.
@@ -87,15 +84,13 @@ $('#decipher_button').click(function() {
     }
 
     if (output !== null)
-    {
         $("#output").text(output.replace(/(.{5})/g, '$1 '));
-        $('#output_count').text("Letter Count: " + output.length);
-    }
 });
 
-// Calculates letter count when input is updated.
-$('#input').keyup(function() {
-    $('#input_count').text("Letter Count: " + $('#input').val().length);
+// Clears the input and output fields.
+$('#clear').click(function() {
+    $('#input').val("");
+    $('#output').val("");
 });
 
 // Open the modal and generate the frequency analysis chart.
@@ -138,5 +133,4 @@ $('#solve').click(function() {
 
 $('document').ready(function() {
     $('#year').text(new Date().getFullYear());
-    $('#input_count').text("Letter Count: " + $('#input').val().length);
 });

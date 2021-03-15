@@ -102,11 +102,10 @@
           <div class="row">
             
             <!-- Input and output textareas -->
-            <div class="col-8">
+            <div class="col-8 text-right">
               <textarea placeholder="Input" class="form-control" id="input"></textarea>
-              <p id="input_count" class="mt-0">Letter Count: 0</p>
+              <button class="btn mt-5" id="clear">Clear</button>
               <textarea placeholder="Output" class="form-control mt-10" id="output" readonly="readonly"></textarea>
-              <p id="output_count" class="mt-0">Letter Count: 0</p>
             </div>
 
             <!-- Blank region -->
@@ -124,7 +123,7 @@
 
                 <input type="number" min="1" max="26" step="2" placeholder="Multiplicative Key" class="form-control" id="mKey">
                 <p></p>
-                <input type="number" min="1" max="26" placeholder="Additive Key" class="form-control" id="bKey">
+                <input type="number" min="0" max="26" placeholder="Additive Key" class="form-control" id="bKey">
 
                 <p></p>
                 <hr>
