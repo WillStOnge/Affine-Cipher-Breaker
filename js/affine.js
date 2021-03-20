@@ -96,27 +96,28 @@ function affineDecipher(multiplicativeKey, additiveKey, plainText, rev)
 // Performs a known plaintext attack on a given cipher text.
 function affineKnownPlaintext(ciphertext, keyword="THE")
 {
-  if (ciphertext == "" || keyword == "")
-    return null;
-  
-  const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
-  const bValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    if (ciphertext == "" || keyword == "")
+        return null;
 
-  var results = [];
+    const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
+    const bValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
-  // Iterate through the allowed m and b values and find any matches.
-  mValues.forEach(m => {
-    bValues.forEach(b => {
-      var enciphered = affineEncipher(m, b, keyword);
+    var results = [];
 
-      if (ciphertext.includes(enciphered))
-        results.push([enciphered, m, b]);
+    // Iterate through the allowed m and b values and find any matches.
+    mValues.forEach(m => {
+        bValues.forEach(b => {
+            var enciphered = affineEncipher(m, b, keyword);
+
+            if (ciphertext.includes(enciphered))
+                results.push([enciphered, m, b]);
+        });
     });
-  });
 
-  return results;
+    return results;
 }
 
+// Finds the affine keys from 2 plaintext to ciphertext mappings.
 function affineCongruencySystems(c1, p1, c2, p2)
 {
     const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
@@ -124,24 +125,19 @@ function affineCongruencySystems(c1, p1, c2, p2)
     
     var m, b, ctemp, ptemp;
     
-    // Solve for m
-    ptemp = math.mod(p1 - p2, 26);
-    
-    // Find p(diff)^-1
-    if(mValues.indexOf(ptemp) >= 0)
-        ptemp = inverseValues[mValues.indexOf(ptemp)];
-  
-    ctemp = math.mod(c1 - c2, 26);
-    
-    m = ctemp * ptemp;
-    m = math.mod(m, 26);
-    
-    // Solve for b
-    b = math.mod((c1 - p1 * m), 26);
-    
-    // Invalid key.
-    if (math.mod(m, 26) === 0)
+    ctemp = math.abs(c2 - c1);
+    ptemp = math.abs(p2 - p1);
+
+    // Find the m value by checking each inverse value.
+    for (var i = 0; i < inverseValues.length; i++)
+        if (math.mod(ptemp * inverseValues[i], 26) === ctemp)
+            m = mValues[i];
+
+    // Invalid multiplicative key.
+    if (m === undefined || math.mod(m, 26) === 0)
         return null;
-        
+
+    b = math.mod(c1 - m * p1, 26);
+
     return [m, b];
 }

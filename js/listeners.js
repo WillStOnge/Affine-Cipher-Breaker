@@ -16,17 +16,19 @@ $("#plaintext-attack").click(function() {
             alertType: "alert-danger",
             timeShown: 3000
         });
+
+        return;
     }
 
     if (matches === null)
+    {
         halfmoon.initStickyAlert({
             content: "The keyword or input field is empty.",
             title: "Error",
             alertType: "alert-danger",
             timeShown: 3000
         });
-    else if (matches.length == 0)
-        $("#keyword-table").html("<p class=\"text-center\">No matches found</p>");
+    }
     else
         buildTable(matches);
 });
