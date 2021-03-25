@@ -127,13 +127,14 @@ function affineCongruencySystems(c1, p1, c2, p2)
 
     // Find m using the extended euclidian algorithm.
     for (var i = 1; i < 26; i++)
-        if (math.mod(math.mod(math.abs(p2 - p1), 26) * math.mod(i, 26), 26) === 1)
+        if (math.mod(math.mod(math.abs(p2 - p1), 26) * math.mod(i, 26), 26) === math.abs(c2 - c1))
             m = i;
 
     // Invalid multiplicative key.
     if (m === undefined || math.mod(m, 26) === 0)
         return null;
 
+    // Find b.
     b = math.mod(c1 - m * p1, 26);
 
     return [m, b];
