@@ -119,19 +119,16 @@ function affineKnownPlaintext(ciphertext, keyword="THE")
 
 // Finds the affine keys from 2 plaintext to ciphertext mappings.
 function affineCongruencySystems(c1, p1, c2, p2)
-{
-    const mValues = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
-    const inverseValues = [1, 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25];
-    
-    var m, b, ctemp, ptemp;
-    
-    ctemp = math.abs(c2 - c1);
-    ptemp = math.abs(p2 - p1);
+{   
+    if (p1 > 26 || p1 <= 0 || p2 > 26 || p2 <= 0 || c1 > 26 || c1 <= 0 || c2 > 26 || c2 <= 0)
+        return null;
 
-    // Find the m value by checking each inverse value.
-    for (var i = 0; i < inverseValues.length; i++)
-        if (math.mod(ptemp * inverseValues[i], 26) === ctemp)
-            m = mValues[i];
+    var m, b;
+
+    // Find m using the extended euclidian algorithm.
+    for (var i = 1; i < 26; i++)
+        if (math.mod(math.mod(math.abs(p2 - p1), 26) * math.mod(i, 26), 26) === 1)
+            m = i;
 
     // Invalid multiplicative key.
     if (m === undefined || math.mod(m, 26) === 0)

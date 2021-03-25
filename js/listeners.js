@@ -112,10 +112,10 @@ $('#solve').click(function() {
 
     try
     {
-        p1 = Number($('#p1').val().charCodeAt(0)) - 64;
-        p2 = Number($('#p2').val().charCodeAt(0)) - 64;
-        c1 = Number($('#c1').val().charCodeAt(0)) - 64;
-        c2 = Number($('#c2').val().charCodeAt(0)) - 64;
+        p1 = Number($('#p1').val().toUpperCase().charCodeAt(0)) - 64;
+        p2 = Number($('#p2').val().toUpperCase().charCodeAt(0)) - 64;
+        c1 = Number($('#c1').val().toUpperCase().charCodeAt(0)) - 64;
+        c2 = Number($('#c2').val().toUpperCase().charCodeAt(0)) - 64;
     }
     catch (e)
     {
