@@ -5,3 +5,5 @@ It also includes a tool for executing a known plaintext attack against a ciphert
 easy to expand if one wished to add support for other ciphers (caesar, multiplication, hill. etc.)
 
 This website is fairly modular, so it should be easy enough to add onto.
+
+The sister tool for the playfair and hill ciphers exists at [WillStOnge/MAT-385-Project](https://github.com/WillStOnge/MAT-385-Project).
