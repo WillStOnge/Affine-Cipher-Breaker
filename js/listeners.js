@@ -98,8 +98,12 @@ $('#clear').click(function() {
 // Open the modal and generate the frequency analysis chart.
 $('#freq_button').click(function() {
     // Clear the canvas
-    var canvas = $('#freq_chart')[0];
-    canvas.width = canvas.width;
+    $('#freq_chart').remove();
+
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("class", "h-three-quarter");
+    canvas.setAttribute("id", "freq_chart");
+    $('#canvas').append(canvas)
 
     createChart($('#freq_chart'), $('#input').val());
     
