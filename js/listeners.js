@@ -46,6 +46,16 @@ $('#encipher_button').click(function() {
         var b = $("#bKey").val();
 
         output = affineEncipher(m, b, input, rev);
+
+        if (output === null)
+        {
+            halfmoon.initStickyAlert({
+                content: "Invalid multiplicative key. It must be odd and not 13.",
+                title: "Error",
+                alertType: "alert-danger",
+                timeShown: 3000
+            });
+        }
     }
     else
     {
@@ -74,6 +84,16 @@ $('#decipher_button').click(function() {
         var b = $("#bKey").val();
         
         output = affineDecipher(m, b, input, rev);
+
+        if (output === null)
+        {
+            halfmoon.initStickyAlert({
+                content: "Invalid multiplicative key. It must be odd and not 13.",
+                title: "Error",
+                alertType: "alert-danger",
+                timeShown: 3000
+            });
+        }
     }
     else
     {

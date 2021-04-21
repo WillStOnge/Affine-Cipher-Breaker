@@ -12,7 +12,7 @@ function buildTable(matches)
         <td>" + match[0] + "</td>\
         <td>" + match[1] + "</td>\
         <td>" + match[2] + "</td>\
-      </tr>"
+      </tr>";
     }
   });
 
